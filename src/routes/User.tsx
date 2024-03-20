@@ -63,13 +63,19 @@ export default function User() {
   }
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label htmlFor="username">Username</label>
-      <input type="text" id="username" value={user?.username} />
+      <input
+        type="text"
+        id="username"
+        name="username"
+        value={user?.username}
+        onChange={(e) => setUser({ ...user, username: e.target.value })}
+      />
       <div className="radio-group">
         Select a role:
         {roles?.map((role) => (
-          <label>
+          <label key={role.role}>
             {role.role}
             <input
               type="radio"
@@ -87,4 +93,28 @@ export default function User() {
       <button>Submit Change</button>
     </form>
   );
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    try {
+      const res = await fetch(`http://localhost:3000/cms/users/${user._id}`, {
+        method: 'PUT',
+        mode: 'cors',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user)
+      });
+
+      const resResult = await res.json();
+
+      if (res.status >= 400) {
+        console.log(resResult);
+        return;
+      }
+
+      setUser(resResult);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
