@@ -5,14 +5,14 @@ type ErrorType = {
 };
 
 type FetchDataResponse<Data> = {
-  data: Data | null;
-  setData: (arg0: Data | null) => void;
+  data: Data;
+  setData: (arg0: Data) => void;
   loading: boolean;
   error: ErrorType | null;
 };
 
 export default function FetchData<T>(apiEndPoint: string): FetchDataResponse<T> {
-  const [data, setData] = useState<T | null>(null);
+  const [data, setData] = useState<T>({} as T);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<ErrorType | null>(null);
 
