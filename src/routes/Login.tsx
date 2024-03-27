@@ -1,4 +1,12 @@
+import { useLocation, useNavigate } from 'react-router-dom';
+import { UseUser } from './Root';
+
 export default function Login() {
+  const { setUser } = UseUser();
+  const { state } = useLocation();
+  const navigate = useNavigate();
+  const redirectLocation = state?.redirectTo ? state.redirectTo : '/';
+
   return (
     <form className="login-form" onSubmit={handleLogin}>
       <label htmlFor="login">
@@ -32,7 +40,8 @@ export default function Login() {
         console.log(resResult);
         return;
       }
-      console.log(resResult);
+      setUser(resResult);
+      navigate(redirectLocation);
     } catch (error) {
       console.log(error);
     }
