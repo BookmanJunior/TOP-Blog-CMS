@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { UseUser } from './Root';
+import '../styles/Login.scss';
 
 export default function Login() {
   const { setUser } = UseUser();
@@ -9,14 +10,9 @@ export default function Login() {
 
   return (
     <form className="login-form" onSubmit={handleLogin}>
-      <label htmlFor="login">
-        Username
-        <input type="text" id="username" name="username" />
-      </label>
-      <label htmlFor="password">
-        Password
-        <input type="password" name="password" id="password" />
-      </label>
+      <div className="title">Login</div>
+      <input type="text" id="username" name="username" placeholder="username" />
+      <input type="password" name="password" id="password" placeholder="password" />
       <button>Login</button>
     </form>
   );
