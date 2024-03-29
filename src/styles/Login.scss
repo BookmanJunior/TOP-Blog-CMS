@@ -1,0 +1,43 @@
+.login-form {
+  height: 450px;
+  max-width: 300px;
+  padding: 2rem;
+  background-color: #151f2e;
+  border-radius: 4px;
+  margin-inline: auto;
+  color: #9fadbd;
+  text-transform: capitalize;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+
+  & .title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  & > input {
+    display: block;
+    background-color: #0e1826;
+    color: inherit;
+    border: none;
+    font-size: 0.9rem;
+
+    &::placeholder {
+      color: inherit;
+      opacity: 0.8;
+    }
+  }
+
+  & > input {
+    padding: 1rem;
+  }
+
+  & > button {
+    background-color: #3db4f2;
+    align-self: center;
+  }
+}
