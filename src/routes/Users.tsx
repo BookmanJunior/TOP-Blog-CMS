@@ -31,6 +31,8 @@ export default function Users() {
             <th scope="col">Role</th>
             <th scope="col">ID</th>
             <th scope="col">Created At</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
           </tr>
         </thead>
         <tbody>
