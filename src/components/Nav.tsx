@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-export default function Dashboard() {
+export default function Nav() {
   return (
     <nav>
       <div className="nav-wrapper">
