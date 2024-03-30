@@ -2,27 +2,16 @@ import { useNavigate } from 'react-router-dom';
 import { ArticleContentEditor } from '../components/ArticleContentEditor';
 import { useRef } from 'react';
 import { MDXEditorMethods } from '@mdxeditor/editor';
+import '../styles/ArticleEditor.scss';
 
 export default function NewArticle() {
   const mdxEditorRef = useRef<MDXEditorMethods>(null);
   const navigate = useNavigate();
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '1rem'
-      }}>
-      <label htmlFor="cover">
-        cover
-        <input type="text" name="cover" id="cover" />
-      </label>
-      <label htmlFor="title">
-        Title
-        <input type="text" name="title" id="title" />
-      </label>
+    <form onSubmit={handleSubmit} className="article-form form-util">
+      <input type="text" name="cover" id="cover" placeholder="Cover" />
+      <input type="text" name="title" id="title" placeholder="Title" />
       <ArticleContentEditor ref={mdxEditorRef} />
       <button>Submit</button>
     </form>

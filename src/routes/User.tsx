@@ -63,7 +63,7 @@ export default function User() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="form-util">
       <label htmlFor="username">Username</label>
       <input
         type="text"

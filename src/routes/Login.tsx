@@ -9,7 +9,7 @@ export default function Login() {
   const redirectLocation = state?.redirectTo ? state.redirectTo : '/';
 
   return (
-    <form className="login-form" onSubmit={handleLogin}>
+    <form className="login-form form-util" onSubmit={handleLogin}>
       <div className="title">Login</div>
       <input type="text" id="username" name="username" placeholder="username" />
       <input type="password" name="password" id="password" placeholder="password" />
