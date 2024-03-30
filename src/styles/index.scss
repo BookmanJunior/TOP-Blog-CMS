@@ -1,3 +1,5 @@
+@use './Table.scss';
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -14,8 +16,6 @@
 }
 
 * {
-  padding: 0;
-  margin: 0;
   box-sizing: border-box;
 }
 
@@ -48,6 +48,10 @@ main {
   justify-content: center;
   align-items: center;
   margin-inline: auto;
+
+  & a {
+    align-self: start;
+  }
 }
 
 main,
@@ -57,6 +61,17 @@ main,
 
 .nav-wrapper {
   margin-inline: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+dialog > form button {
+  margin-inline: 0.5rem;
 }
 
 h1 {
