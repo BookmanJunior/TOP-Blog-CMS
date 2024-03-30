@@ -1,0 +1,15 @@
+.article-form {
+  padding-block: 1rem;
+  width: min(1200px, 100%);
+
+  & > button {
+    align-self: start;
+  }
+}
+
+.mdxeditor-root-contenteditable > div {
+  color: #ffffff;
+  background-color: #0e1826;
+  min-height: 600px;
+  border-radius: 4px;
+}
