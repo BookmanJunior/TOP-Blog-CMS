@@ -2,9 +2,17 @@ import { NavLink } from 'react-router-dom';
 
 export default function Dashboard() {
   return (
-    <div className="dashboard">
-      <NavLink to={'users'}>Users</NavLink>
-      <NavLink to={'articles'}>Articles</NavLink>
-    </div>
+    <nav>
+      <div className="nav-wrapper">
+        <ul className="nav-links">
+          <li className="nav-link">
+            <NavLink to={'users'}>Users</NavLink>
+          </li>
+          <li className="nav-link">
+            <NavLink to={'articles'}>Articles</NavLink>
+          </li>
+        </ul>
+      </div>
+    </nav>
   );
 }
