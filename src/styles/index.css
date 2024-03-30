@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #0b1622;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,10 +24,32 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+}
+
+#root {
+  width: 100%;
   min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  margin-inline: auto;
+}
+
+main,
+.nav-wrapper {
+  width: min(1200px, 100%);
+}
+
+.nav-wrapper {
+  margin-inline: auto;
 }
 
 h1 {
