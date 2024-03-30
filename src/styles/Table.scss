@@ -1,0 +1,26 @@
+table {
+  text-align: center;
+  overflow-x: auto;
+  width: 100%;
+}
+
+thead {
+  background-color: #353757;
+}
+
+th {
+  padding: 1rem;
+}
+
+tbody tr > th,
+tbody tr > td {
+  padding: 1rem;
+}
+
+tbody > tr:nth-child(even) {
+  background-color: #5f5b5b;
+}
+
+tbody > tr:nth-child(odd) {
+  background-color: #464545;
+}
