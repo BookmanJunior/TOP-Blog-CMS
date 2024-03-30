@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@mdxeditor/editor": "^2.16.0",
+    "date-fns": "^3.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3"
@@ -27,6 +28,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "prettier": "^3.2.5",
+    "sass": "^1.72.0",
     "typescript": "^5.2.2",
     "vite": "^5.1.6"
   }
