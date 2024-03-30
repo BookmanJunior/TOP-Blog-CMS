@@ -22,33 +22,23 @@ export default function ArticleEditor() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '1rem'
-      }}>
-      <label htmlFor="cover">
-        cover
-        <input
-          type="text"
-          name="cover"
-          id="cover"
-          value={data?.cover}
-          onChange={(e) => setData({ ...data, cover: e.target.value })}
-        />
-      </label>
-      <label htmlFor="title">
-        Title
-        <input
-          type="text"
-          name="title"
-          id="title"
-          value={data?.title}
-          onChange={(e) => setData({ ...data, title: e.target.value })}
-        />
-      </label>
+    <form onSubmit={handleSubmit} className="article-form form-util">
+      <input
+        type="text"
+        name="cover"
+        id="cover"
+        value={data?.cover}
+        onChange={(e) => setData({ ...data, cover: e.target.value })}
+        placeholder="Cover..."
+      />
+      <input
+        type="text"
+        name="title"
+        id="title"
+        value={data?.title}
+        onChange={(e) => setData({ ...data, title: e.target.value })}
+        placeholder="Title..."
+      />
       <ArticleContentEditor content={data.content} ref={mdxEditorRef} />
       <button>Submit</button>
     </form>
