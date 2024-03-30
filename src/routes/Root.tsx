@@ -1,5 +1,5 @@
 import { Outlet, useOutletContext } from 'react-router-dom';
-import Dashboard from '../components/Dashboard';
+import Nav from '../components/Nav';
 import { useState } from 'react';
 
 type UserType = {
@@ -17,8 +17,15 @@ export default function Root() {
 
   return (
     <>
-      {user && <Dashboard />}
-      <Outlet context={{ user, setUser }} />
+      {user && <Nav />}
+      <main>
+        <Outlet
+          context={{
+            user,
+            setUser
+          }}
+        />
+      </main>
     </>
   );
 }
