@@ -20,7 +20,6 @@ import {
   imagePlugin
 } from '@mdxeditor/editor';
 import '@mdxeditor/editor/style.css';
-import '../styles/ArticleEditor.css';
 import { forwardRef } from 'react';
 import { MDXEditorMethods } from '@mdxeditor/editor';
 
@@ -33,7 +32,8 @@ export const ArticleContentEditor = forwardRef<MDXEditorMethods, ArticleEditorPr
     return (
       <MDXEditor
         ref={ref}
-        markdown={props.content ? props.content : 'Article content here...'}
+        markdown={props.content ? props.content : ''}
+        placeholder="Article content here..."
         plugins={[
           listsPlugin(),
           headingsPlugin(),
