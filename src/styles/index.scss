@@ -74,6 +74,31 @@ dialog > form button {
   margin-inline: 0.5rem;
 }
 
+.form-util {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+
+  & > input {
+    display: block;
+    background-color: #0e1826;
+    color: inherit;
+    border: none;
+    font-size: 0.9rem;
+    padding: 1rem;
+
+    &::placeholder {
+      color: inherit;
+      opacity: 0.8;
+    }
+  }
+
+  & > button {
+    background-color: #3db4f2;
+  }
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
