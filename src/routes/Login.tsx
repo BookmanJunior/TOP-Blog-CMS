@@ -1,8 +1,16 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { UseUser } from './Root';
+import ErrorMessage from '../components/ErrorMessage';
+import { useState } from 'react';
 import '../styles/Login.scss';
 
+type LoginError = {
+  message?: string;
+};
+
 export default function Login() {
+  const [error, setError] = useState<LoginError | null>(null);
+  const [loading, setLoading] = useState(false);
   const { setUser } = UseUser();
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -13,16 +21,18 @@ export default function Login() {
       <div className="title">Login</div>
       <input type="text" id="username" name="username" placeholder="username" />
       <input type="password" name="password" id="password" placeholder="password" />
-      <button>Login</button>
+      <ErrorMessage error={error?.message} />
+      <button disabled={loading}>Login</button>
     </form>
   );
 
   async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setLoading(true);
     const data = new FormData(e.currentTarget);
 
     try {
-      const res = await fetch('http://localhost:3000/cms/login', {
+      const res = await fetch('http://localhost:3000/admin/login', {
         method: 'POST',
         mode: 'cors',
         credentials: 'include',
@@ -33,13 +43,15 @@ export default function Login() {
       const resResult = await res.json();
 
       if (res.status >= 400) {
-        console.log(resResult);
+        setError(resResult);
         return;
       }
       setUser(resResult);
       navigate(redirectLocation);
     } catch (error) {
-      console.log(error);
+      setError({ message: 'Network Error' });
+    } finally {
+      setLoading(false);
     }
   }
 }
