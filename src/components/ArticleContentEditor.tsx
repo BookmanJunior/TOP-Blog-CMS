@@ -20,15 +20,15 @@ import {
   imagePlugin
 } from '@mdxeditor/editor';
 import '@mdxeditor/editor/style.css';
-import { forwardRef } from 'react';
+import { forwardRef, memo } from 'react';
 import { MDXEditorMethods } from '@mdxeditor/editor';
 
 type ArticleEditorProps = {
   content?: string;
 };
 
-export const ArticleContentEditor = forwardRef<MDXEditorMethods, ArticleEditorProps>(
-  function ArticleContentEditor(props, ref) {
+export const ArticleContentEditor = memo(
+  forwardRef<MDXEditorMethods, ArticleEditorProps>(function ArticleContentEditor(props, ref) {
     return (
       <MDXEditor
         ref={ref}
@@ -63,5 +63,5 @@ export const ArticleContentEditor = forwardRef<MDXEditorMethods, ArticleEditorPr
         ]}
       />
     );
-  }
+  })
 );
