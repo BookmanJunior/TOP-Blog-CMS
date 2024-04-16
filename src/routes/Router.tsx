@@ -6,8 +6,9 @@ import Users from './Users';
 import User from './User';
 import Articles from './Articles';
 import ArticleEditor from './ArticleEditor';
-import NewArticle from './NewArticle';
 import ProtectedRoute from '../components/ProtectedRoute';
+import UserForm from '../components/UserForm';
+import ArticleForm from '../components/ArticleForm';
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -44,6 +45,14 @@ export default function Router() {
           )
         },
         {
+          path: 'users/create',
+          element: (
+            <ProtectedRoute>
+              <UserForm apiEndPoint="http://localhost:3000/cms/users" fetchMethod="POST" />
+            </ProtectedRoute>
+          )
+        },
+        {
           path: 'articles',
           element: (
             <ProtectedRoute>
@@ -63,7 +72,7 @@ export default function Router() {
           path: 'articles/create',
           element: (
             <ProtectedRoute>
-              <NewArticle />
+              <ArticleForm fetchMethod="POST" apiEndPoint="http://localhost:3000/cms/articles" />
             </ProtectedRoute>
           )
         }
