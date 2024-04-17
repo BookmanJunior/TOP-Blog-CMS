@@ -14,7 +14,7 @@ export default function ArticleEditor() {
   }
 
   if (error) {
-    return <p>Error: {error.message}</p>;
+    throw error;
   }
 
   return (
