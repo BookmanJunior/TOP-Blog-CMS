@@ -13,16 +13,12 @@ export default function Users() {
   }
 
   if (error) {
-    return (
-      <>
-        <span>Error: {error.message}</span>
-        <button onClick={() => window.location.reload()}>Reload</button>
-      </>
-    );
+    throw error;
   }
 
   return (
     <>
+      <Link to={'create'}>Create User</Link>
       <table>
         <caption>List of Users</caption>
         <thead>
@@ -47,7 +43,7 @@ export default function Users() {
                 <DeleteButton<UserType[]>
                   title={user.username}
                   setData={setData}
-                  apiEndPoint={`http://localhost:3000/cms/users`}
+                  apiEndPoint={`http://localhost:3000/cms/users/${user._id}`}
                 />
               </td>
             </tr>
