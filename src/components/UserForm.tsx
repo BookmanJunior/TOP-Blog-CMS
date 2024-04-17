@@ -61,6 +61,7 @@ export default function UserForm({ apiEndPoint, fetchMethod, user }: UserForm) {
       )}
       {data.length && (
         <div className="user-roles">
+          Pick a user role:
           {data.map((role) => (
             <FormInput
               key={role.role}
