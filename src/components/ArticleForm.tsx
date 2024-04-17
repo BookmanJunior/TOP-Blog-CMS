@@ -4,6 +4,7 @@ import ErrorMessage from './ErrorMessage';
 import { ChangeEvent, useRef, useState } from 'react';
 import { MDXEditorMethods } from '@mdxeditor/editor';
 import { ArticleType } from '../Types/ArticleType';
+import FormInput from './FormInput';
 
 type ArticleForm = {
   data?: ArticleType;
@@ -27,22 +28,20 @@ export default function ArticleForm({ data, fetchMethod, apiEndPoint }: ArticleF
 
   return (
     <form onSubmit={handleSubmit} className="article-form form-util">
-      <input
-        type="text"
+      <FormInput
         name="cover"
+        placeholder="Cover"
         value={article?.cover}
-        onChange={(e) => handlePropChange(e, 'cover')}
-        placeholder="Cover..."
-      />
-      <ErrorMessage error={errors?.cover} />
-      <input
-        type="text"
+        onChange={(e) => handlePropChange(e, 'cover')}>
+        <ErrorMessage error={errors?.cover} />
+      </FormInput>
+      <FormInput
         name="title"
+        placeholder="Title"
         value={article?.title}
-        onChange={(e) => handlePropChange(e, 'title')}
-        placeholder="Title..."
-      />
-      <ErrorMessage error={errors?.title} />
+        onChange={(e) => handlePropChange(e, 'title')}>
+        <ErrorMessage error={errors?.title} />
+      </FormInput>
       <ArticleContentEditor content={data?.content} ref={mdxEditorRef} />
       <ErrorMessage error={errors?.content} />
       <ErrorMessage error={errors?.unexpected} />

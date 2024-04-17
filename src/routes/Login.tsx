@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { UseUser } from './Root';
 import ErrorMessage from '../components/ErrorMessage';
 import { useState } from 'react';
+import FormInput from '../components/FormInput';
 import '../styles/Login.scss';
 
 type LoginError = {
@@ -19,8 +20,8 @@ export default function Login() {
   return (
     <form className="login-form form-util" onSubmit={handleLogin}>
       <div className="title">Login</div>
-      <input type="text" id="username" name="username" placeholder="username" />
-      <input type="password" name="password" id="password" placeholder="password" />
+      <FormInput name="username" placeholder="Username" />
+      <FormInput name="password" placeholder="Password" type="password" />
       <ErrorMessage error={error?.message} />
       <button disabled={loading}>Login</button>
     </form>
