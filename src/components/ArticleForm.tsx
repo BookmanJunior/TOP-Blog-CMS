@@ -5,6 +5,7 @@ import { ChangeEvent, useRef, useState } from 'react';
 import { MDXEditorMethods } from '@mdxeditor/editor';
 import { ArticleType } from '../Types/ArticleType';
 import FormInput from './FormInput';
+import '../styles/ArticleForm.scss';
 
 type ArticleForm = {
   data?: ArticleType;
