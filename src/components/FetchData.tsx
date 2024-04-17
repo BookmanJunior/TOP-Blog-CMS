@@ -28,13 +28,16 @@ export default function FetchData<T>(apiEndPoint: string): FetchDataResponse<T> 
         const resResult = await res.json();
 
         if (res.status >= 400) {
-          setError(resResult);
+          const err = new Error(resResult.message);
+          setError(err);
           return;
         }
 
         setData(resResult);
       } catch (error) {
-        setError({ message: 'Something went wrong. Please try again' });
+        if (error instanceof Error) {
+          setError(error);
+        }
       } finally {
         setLoading(false);
       }
