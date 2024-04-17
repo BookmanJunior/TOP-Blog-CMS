@@ -9,12 +9,14 @@ import ArticleEditor from './ArticleEditor';
 import ProtectedRoute from '../components/ProtectedRoute';
 import UserForm from '../components/UserForm';
 import ArticleForm from '../components/ArticleForm';
+import ErrorElement from './ErrorElements';
 
 export default function Router() {
   const router = createBrowserRouter([
     {
       path: '/',
       element: <Root />,
+      errorElement: <ErrorElement />,
       children: [
         {
           index: true,
