@@ -80,13 +80,14 @@ dialog > form button {
   justify-content: center;
   gap: 2rem;
 
-  & > input {
+  & > label input {
     display: block;
     background-color: #0e1826;
     color: inherit;
     border: none;
     font-size: 0.9rem;
     padding: 1rem;
+    width: 100%;
 
     &::placeholder {
       color: inherit;
@@ -125,6 +126,7 @@ dialog > form button {
 }
 
 .error-message {
+  margin-block: 0.5rem;
   color: #ff0000;
 }
 
