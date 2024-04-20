@@ -5,6 +5,13 @@
   & > button {
     align-self: start;
   }
+
+  select {
+    border: none;
+    padding: 1rem;
+    background-color: #0e1826;
+    position: relative;
+  }
 }
 
 .mdxeditor-root-contenteditable > div {
