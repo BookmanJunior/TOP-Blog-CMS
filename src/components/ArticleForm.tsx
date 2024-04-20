@@ -6,6 +6,7 @@ import { MDXEditorMethods } from '@mdxeditor/editor';
 import { ArticleType } from '../Types/ArticleType';
 import FormInput from './FormInput';
 import '../styles/ArticleForm.scss';
+import FetchData from './FetchData';
 
 type ArticleForm = {
   data?: ArticleType;
@@ -16,9 +17,12 @@ type ArticleForm = {
 type ArticleErrors = {
   cover?: string;
   title?: string;
+  category?: string;
   content?: string;
   unexpected?: string;
 };
+
+type onChangeProps = "title" | "cover" | "category"
 
 export default function ArticleForm({ data, fetchMethod, apiEndPoint }: ArticleForm) {
   const [article, setArticle] = useState<ArticleType | undefined>(data || undefined);
@@ -43,6 +47,8 @@ export default function ArticleForm({ data, fetchMethod, apiEndPoint }: ArticleF
         onChange={(e) => handlePropChange(e, 'title')}>
         <ErrorMessage error={errors?.title} />
       </FormInput>
+      <Categories articleData={article} handleChange={handlePropChange} />
+      <ErrorMessage error={errors?.category} />
       <ArticleContentEditor content={data?.content} ref={mdxEditorRef} />
       <ErrorMessage error={errors?.content} />
       <ErrorMessage error={errors?.unexpected} />
@@ -52,7 +58,10 @@ export default function ArticleForm({ data, fetchMethod, apiEndPoint }: ArticleF
     </form>
   );
 
-  function handlePropChange(e: ChangeEvent<HTMLInputElement>, prop: 'title' | 'cover') {
+  function handlePropChange(
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    prop: onChangeProps
+  ) {
     setArticle({ ...article, [prop]: e.target.value } as ArticleType);
   }
 
@@ -90,4 +99,43 @@ export default function ArticleForm({ data, fetchMethod, apiEndPoint }: ArticleF
       setLoading(false);
     }
   }
+}
+
+type Categories = {
+  title: string;
+  _id: string;
+};
+
+type CategoriesProps = {
+  articleData: ArticleType | undefined;
+  handleChange: (
+    e: React.ChangeEvent<HTMLSelectElement>,
+    prop: onChangeProps
+  ) => void;
+};
+
+function Categories({ articleData, handleChange }: CategoriesProps) {
+  const { data, loading, error } = FetchData<Categories[]>('http://localhost:3000/cms/categories');
+
+  if (loading) return <div>Loading...</div>;
+
+  if (error) return <div>Something went wrong</div>;
+
+  return (
+    <select
+      name="category"
+      onChange={(e) => handleChange(e, 'category')}
+      defaultValue={articleData?.category ?? ''}>
+      {!articleData?.category && (
+        <option value="" disabled selected>
+          Choose a category
+        </option>
+      )}
+      {data.map((category) => (
+        <option key={category.title} value={category._id}>
+          {category.title}
+        </option>
+      ))}
+    </select>
+  );
 }
