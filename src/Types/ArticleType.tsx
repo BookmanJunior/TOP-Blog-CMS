@@ -6,6 +6,7 @@ export type ArticleType = {
   content: string;
   author: UserType;
   comments: [];
+  category: string;
   _id: string;
   date: string;
   published: boolean;
