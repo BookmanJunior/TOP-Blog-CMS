@@ -11,6 +11,9 @@ export default function Nav() {
           <li className="nav-link">
             <NavLink to={'articles'}>Articles</NavLink>
           </li>
+          <li className="nav-link">
+            <NavLink to="categories">Categories</NavLink>
+          </li>
         </ul>
       </div>
     </nav>
