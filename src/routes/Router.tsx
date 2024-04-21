@@ -10,6 +10,9 @@ import ProtectedRoute from '../components/ProtectedRoute';
 import UserForm from '../components/UserForm';
 import ArticleForm from '../components/ArticleForm';
 import ErrorElement from './ErrorElements';
+import Categories from './Categories';
+import CategoryForm from '../components/CategoryForm';
+import CategoryEditor from './CategoryEditor';
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -75,6 +78,30 @@ export default function Router() {
           element: (
             <ProtectedRoute>
               <ArticleForm fetchMethod="POST" apiEndPoint="http://localhost:3000/cms/articles" />
+            </ProtectedRoute>
+          )
+        },
+        {
+          path: 'categories',
+          element: (
+            <ProtectedRoute>
+              <Categories />
+            </ProtectedRoute>
+          )
+        },
+        {
+          path: 'categories/create',
+          element: (
+            <ProtectedRoute>
+              <CategoryForm fetchMethod="POST" apiEndpoint="http://localhost:3000/cms/categories" />
+            </ProtectedRoute>
+          )
+        },
+        {
+          path: 'categories/:categoryId',
+          element: (
+            <ProtectedRoute>
+              <CategoryEditor />
             </ProtectedRoute>
           )
         }
