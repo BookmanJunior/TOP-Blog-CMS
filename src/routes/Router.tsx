@@ -13,6 +13,7 @@ import ErrorElement from './ErrorElements';
 import Categories from './Categories';
 import CategoryForm from '../components/CategoryForm';
 import CategoryEditor from './CategoryEditor';
+import { URL } from '../helpers/getUrl';
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -53,7 +54,7 @@ export default function Router() {
           path: 'users/create',
           element: (
             <ProtectedRoute>
-              <UserForm apiEndPoint="http://localhost:3000/cms/users" fetchMethod="POST" />
+              <UserForm apiEndPoint={`${URL}/cms/users`} fetchMethod="POST" />
             </ProtectedRoute>
           )
         },
@@ -77,7 +78,7 @@ export default function Router() {
           path: 'articles/create',
           element: (
             <ProtectedRoute>
-              <ArticleForm fetchMethod="POST" apiEndPoint="http://localhost:3000/cms/articles" />
+              <ArticleForm fetchMethod="POST" apiEndPoint={`${URL}/cms/articles`} />
             </ProtectedRoute>
           )
         },
@@ -93,7 +94,7 @@ export default function Router() {
           path: 'categories/create',
           element: (
             <ProtectedRoute>
-              <CategoryForm fetchMethod="POST" apiEndpoint="http://localhost:3000/cms/categories" />
+              <CategoryForm fetchMethod="POST" apiEndpoint={`${URL}/cms/categories`} />
             </ProtectedRoute>
           )
         },

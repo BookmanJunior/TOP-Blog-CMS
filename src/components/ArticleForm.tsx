@@ -7,6 +7,7 @@ import { ArticleType } from '../Types/ArticleType';
 import FormInput from './FormInput';
 import '../styles/ArticleForm.scss';
 import FetchData from './FetchData';
+import { URL } from '../helpers/getUrl';
 
 type ArticleForm = {
   data?: ArticleType;
@@ -22,7 +23,7 @@ type ArticleErrors = {
   unexpected?: string;
 };
 
-type onChangeProps = "title" | "cover" | "category"
+type onChangeProps = 'title' | 'cover' | 'category';
 
 export default function ArticleForm({ data, fetchMethod, apiEndPoint }: ArticleForm) {
   const [article, setArticle] = useState<ArticleType | undefined>(data || undefined);
@@ -108,14 +109,11 @@ type Categories = {
 
 type CategoriesProps = {
   articleData: ArticleType | undefined;
-  handleChange: (
-    e: React.ChangeEvent<HTMLSelectElement>,
-    prop: onChangeProps
-  ) => void;
+  handleChange: (e: React.ChangeEvent<HTMLSelectElement>, prop: onChangeProps) => void;
 };
 
 function Categories({ articleData, handleChange }: CategoriesProps) {
-  const { data, loading, error } = FetchData<Categories[]>('http://localhost:3000/cms/categories');
+  const { data, loading, error } = FetchData<Categories[]>(`${URL}/cms/categories`);
 
   if (loading) return <div>Loading...</div>;
 

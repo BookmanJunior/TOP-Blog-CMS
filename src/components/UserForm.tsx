@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { UserType } from '../Types/UserType';
 import ErrorMessage from './ErrorMessage';
 import FormInput from './FormInput';
+import { URL } from '../helpers/getUrl';
 
 type NewUserType = {
   username: string;
@@ -27,7 +28,7 @@ type ResponseError = {
 };
 
 export default function UserForm({ apiEndPoint, fetchMethod, user }: UserForm) {
-  const { data } = FetchData<RolesType[]>('http://localhost:3000/cms/roles');
+  const { data } = FetchData<RolesType[]>(`${URL}/cms/roles`);
   const [userData, setUserData] = useState<NewUserType | undefined>(user ?? undefined);
   const [responseError, setResponseError] = useState<ResponseError | undefined>();
   const navigate = useNavigate();

@@ -3,9 +3,10 @@ import FetchData from '../components/FetchData';
 import { UserType } from '../Types/UserType';
 import { format } from 'date-fns';
 import DeleteButton from '../components/DeleteButton';
+import { URL } from '../helpers/getUrl';
 
 export default function Users() {
-  const apiEndPoint = 'http://localhost:3000/cms/users';
+  const apiEndPoint = `${URL}/cms/users`;
   const { data, setData, loading, error } = FetchData<UserType[]>(apiEndPoint);
 
   if (loading) {
@@ -43,7 +44,7 @@ export default function Users() {
                 <DeleteButton<UserType[]>
                   title={user.username}
                   setData={setData}
-                  apiEndPoint={`http://localhost:3000/cms/users/${user._id}`}
+                  apiEndPoint={`${URL}/cms/users/${user._id}`}
                 />
               </td>
             </tr>

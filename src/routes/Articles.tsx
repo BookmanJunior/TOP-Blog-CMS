@@ -4,16 +4,17 @@ import FetchData from '../components/FetchData';
 import { useEffect, useRef, useState } from 'react';
 import { format } from 'date-fns';
 import DeleteButton from '../components/DeleteButton';
+import { URL } from '../helpers/getUrl';
 
 export default function Articles() {
-  const apiEndPoint = 'http://localhost:3000/articles';
+  const apiEndPoint = `${URL}/articles`;
   const { data, setData, error, loading } = FetchData<ArticleType[]>(apiEndPoint);
   const [checkBoxStatus, setCheckBoxStatus] = useState(false);
 
   if (loading) return <span>Loading...</span>;
 
   if (error) {
-    return <span>{error.message}</span>;
+    throw error;
   }
 
   return (
@@ -59,7 +60,7 @@ export default function Articles() {
                 <DeleteButton<ArticleType[]>
                   title={article.title}
                   setData={setData}
-                  apiEndPoint={`http://localhost:3000/cms/articles/${article._id}`}
+                  apiEndPoint={`${URL}/${article._id}`}
                 />
               </td>
             </tr>
@@ -138,7 +139,7 @@ function CheckBox({ article, setData, name, checkBoxStatus, setCheckBoxStatus }:
     e.preventDefault();
     setCheckBoxStatus && setCheckBoxStatus(true);
     try {
-      const res = await fetch(`http://localhost:3000/cms/articles/${article._id}/checkbox`, {
+      const res = await fetch(`${URL}/cms/articles/${article._id}/checkbox`, {
         method: 'PUT',
         mode: 'cors',
         credentials: 'include',

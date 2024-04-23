@@ -1,12 +1,11 @@
 import FetchData from '../components/FetchData';
 import { Link } from 'react-router-dom';
 import { CategoryType } from '../Types/CategoryType';
+import { URL } from '../helpers/getUrl';
 import DeleteButton from '../components/DeleteButton';
 
 export default function Categories() {
-  const { data, setData, loading, error } = FetchData<CategoryType[]>(
-    'http://localhost:3000/cms/categories'
-  );
+  const { data, setData, loading, error } = FetchData<CategoryType[]>(`${URL}/cms/categories`);
 
   if (loading) return <div>Loading...</div>;
 
@@ -34,7 +33,7 @@ export default function Categories() {
               <td>
                 <DeleteButton
                   title={category.title}
-                  apiEndPoint={`http://localhost:3000/cms/categories/${category._id}`}
+                  apiEndPoint={`${URL}/cms/categories/${category._id}`}
                   setData={setData}
                 />
               </td>

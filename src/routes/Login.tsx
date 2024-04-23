@@ -3,6 +3,7 @@ import { UseUser } from './Root';
 import ErrorMessage from '../components/ErrorMessage';
 import { useState } from 'react';
 import FormInput from '../components/FormInput';
+import { URL } from '../helpers/getUrl';
 import '../styles/Login.scss';
 
 type LoginError = {
@@ -33,7 +34,7 @@ export default function Login() {
     const data = new FormData(e.currentTarget);
 
     try {
-      const res = await fetch('http://localhost:3000/admin/login', {
+      const res = await fetch(`${URL}/admin`, {
         method: 'POST',
         mode: 'cors',
         credentials: 'include',

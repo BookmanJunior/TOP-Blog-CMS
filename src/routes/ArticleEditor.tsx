@@ -2,12 +2,11 @@ import { useParams } from 'react-router-dom';
 import { ArticleType } from '../Types/ArticleType';
 import FetchData from '../components/FetchData';
 import ArticleForm from '../components/ArticleForm';
+import { URL } from '../helpers/getUrl';
 
 export default function ArticleEditor() {
   const { articleId } = useParams();
-  const { data, loading, error } = FetchData<ArticleType>(
-    `http://localhost:3000/articles/${articleId}`
-  );
+  const { data, loading, error } = FetchData<ArticleType>(`${URL}/articles/${articleId}`);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -18,10 +17,6 @@ export default function ArticleEditor() {
   }
 
   return (
-    <ArticleForm
-      data={data}
-      fetchMethod="PUT"
-      apiEndPoint={`http://localhost:3000/cms/articles/${articleId}`}
-    />
+    <ArticleForm data={data} fetchMethod="PUT" apiEndPoint={`${URL}/cms/articles/${articleId}`} />
   );
 }

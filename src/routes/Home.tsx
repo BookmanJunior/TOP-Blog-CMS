@@ -1,4 +1,5 @@
 import FetchData from '../components/FetchData';
+import { URL } from '../helpers/getUrl';
 
 type DocumentTypeCount = {
   userCount: number;
@@ -7,7 +8,7 @@ type DocumentTypeCount = {
 };
 
 export default function Home() {
-  const { data, loading, error } = FetchData<DocumentTypeCount>('http://localhost:3000/cms/count');
+  const { data, loading, error } = FetchData<DocumentTypeCount>(`${URL}/cms/count`);
 
   if (loading) return <p>Loading...</p>;
 
