@@ -60,7 +60,7 @@ export default function Articles() {
                 <DeleteButton<ArticleType[]>
                   title={article.title}
                   setData={setData}
-                  apiEndPoint={`${URL}/${article._id}`}
+                  apiEndPoint={`${URL}/cms/articles/${article._id}`}
                 />
               </td>
             </tr>
