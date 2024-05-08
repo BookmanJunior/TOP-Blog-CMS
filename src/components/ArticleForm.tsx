@@ -79,6 +79,7 @@ export default function ArticleForm({ data, fetchMethod, apiEndPoint }: ArticleF
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...article,
+          category: article?.category._id,
           content: content
         })
       });
@@ -123,7 +124,7 @@ function Categories({ articleData, handleChange }: CategoriesProps) {
     <select
       name="category"
       onChange={(e) => handleChange(e, 'category')}
-      defaultValue={articleData?.category ?? ''}>
+      defaultValue={articleData?.category._id}>
       {!articleData?.category && (
         <option value="" disabled selected>
           Choose a category
