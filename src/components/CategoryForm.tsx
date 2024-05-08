@@ -9,10 +9,15 @@ type CategoryFormProps = {
   fetchMethod: 'POST' | 'PUT';
 };
 
+type CategoryFormErrors = {
+  title?: string;
+  network?: string;
+};
+
 export default function CategoryForm({ data, apiEndpoint, fetchMethod }: CategoryFormProps) {
   const [category, setCategory] = useState(data ?? '');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<Error | undefined>(undefined);
+  const [error, setError] = useState<CategoryFormErrors | undefined>(undefined);
   const navigate = useNavigate();
 
   return (
@@ -22,7 +27,7 @@ export default function CategoryForm({ data, apiEndpoint, fetchMethod }: Categor
         placeholder="Category Title"
         value={category}
         onChange={(e) => setCategory(e.target.value)}>
-        <ErrorMessage error={error?.message} />
+        <ErrorMessage error={error?.title ?? error?.network} />
       </FormInput>
       <button disabled={loading}>Submit</button>
     </form>
@@ -44,14 +49,14 @@ export default function CategoryForm({ data, apiEndpoint, fetchMethod }: Categor
       const resResult = await res.json();
 
       if (res.status >= 400) {
-        setError(new Error(resResult.message));
+        setError(resResult);
         return;
       }
 
       navigate('/categories');
     } catch (error) {
       if (error instanceof Error) {
-        setError(error);
+        setError({ ...error, network: error.message });
       }
     } finally {
       setLoading(false);
