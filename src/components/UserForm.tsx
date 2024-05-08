@@ -31,6 +31,7 @@ export default function UserForm({ apiEndPoint, fetchMethod, user }: UserForm) {
   const { data } = FetchData<RolesType[]>(`${URL}/cms/roles`);
   const [userData, setUserData] = useState<NewUserType | undefined>(user ?? undefined);
   const [responseError, setResponseError] = useState<ResponseError | undefined>();
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -72,18 +73,18 @@ export default function UserForm({ apiEndPoint, fetchMethod, user }: UserForm) {
               id={role.role}
               value={role.role}
               checked={userData?.role === role.role}
-              onChange={(e) => handleOnChange(e, 'role')}>
-              <ErrorMessage error={responseError?.role} />
-            </FormInput>
+              onChange={(e) => handleOnChange(e, 'role')}></FormInput>
           ))}
+          <ErrorMessage error={responseError?.role} />
         </div>
       )}
-      <button>Submit</button>
+      <button disabled={loading}>Submit</button>
     </form>
   );
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setLoading(true);
     try {
       const res = await fetch(apiEndPoint, {
         method: fetchMethod,
@@ -103,6 +104,8 @@ export default function UserForm({ apiEndPoint, fetchMethod, user }: UserForm) {
       navigate('/users');
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   }
 
